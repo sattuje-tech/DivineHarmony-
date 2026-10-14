@@ -1,0 +1,912 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Divine Harmony (@devineharmony4u) | Official Music & Video Portal</title>
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Google Fonts: Playfair Display for Serene Titles, Inter for Clean Body Text -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              gold: '#E6A856',
+              goldLight: '#F2C98A',
+              goldDark: '#C78936',
+              darkBg: '#1C1A17',
+              darkCard: '#26221C',
+              darkAccent: '#332D25',
+              cream: '#F7F4EF',
+              creamMuted: '#D9D4C7',
+            }
+          },
+          fontFamily: {
+            serif: ['"Playfair Display"', 'serif'],
+            sans: ['Inter', 'sans-serif'],
+          },
+          boxShadow: {
+            'gold-glow': '0 0 25px -5px rgba(230, 168, 86, 0.3)',
+            'gold-glow-lg': '0 0 40px -5px rgba(230, 168, 86, 0.5)',
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #1C1A17;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #332D25;
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #E6A856;
+    }
+
+    /* Subtle Animated Glow Effects */
+    @keyframes pulseGlow {
+      0%, 100% { opacity: 0.4; transform: scale(1); }
+      50% { opacity: 0.8; transform: scale(1.05); }
+    }
+    .glow-bg {
+      animation: pulseGlow 8s ease-in-out infinite;
+    }
+
+    /* Sound Wave Animation */
+    .bar {
+      transition: height 0.2s ease;
+    }
+    .playing .bar {
+      animation: soundWave 1.2s infinite ease-in-out alternate;
+    }
+    .playing .bar:nth-child(1) { animation-delay: 0.1s; }
+    .playing .bar:nth-child(2) { animation-delay: 0.3s; }
+    .playing .bar:nth-child(3) { animation-delay: 0.2s; }
+    .playing .bar:nth-child(4) { animation-delay: 0.4s; }
+
+    @keyframes soundWave {
+      0% { height: 4px; }
+      100% { height: 20px; }
+    }
+  </style>
+</head>
+<body class="bg-brand-darkBg text-brand-cream font-sans antialiased selection:bg-brand-gold selection:text-brand-darkBg pb-24">
+
+  <!-- ================= HEADER / NAVIGATION ================= -->
+  <header id="navbar" class="fixed top-0 left-0 w-full z-40 transition-all duration-300 bg-brand-darkBg/90 backdrop-blur-md border-b border-brand-darkAccent/50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+      
+      <!-- Brand Logo -->
+      <a href="#home" class="flex items-center space-x-3 group">
+        <div class="w-10 h-10 rounded-full bg-gradient-to-tr from-brand-gold to-brand-goldLight flex items-center justify-center text-brand-darkBg font-serif font-bold text-xl shadow-gold-glow group-hover:scale-105 transition-transform duration-300">
+          <i class="fa-solid font-normal fa-om text-brand-darkBg text-lg"></i>
+        </div>
+        <div class="flex flex-col">
+          <span class="font-serif text-lg sm:text-xl font-bold tracking-wide text-brand-cream group-hover:text-brand-gold transition-colors">DIVINE HARMONY</span>
+          <span class="text-xs text-brand-gold/80 tracking-wider -mt-1">@devineharmony4u</span>
+        </div>
+      </a>
+
+      <!-- Desktop Nav Links -->
+      <nav class="hidden md:flex items-center space-x-8 text-sm font-medium tracking-wide">
+        <a href="#home" class="text-brand-cream hover:text-brand-gold transition-colors">Home</a>
+        <a href="#featured" class="text-brand-cream hover:text-brand-gold transition-colors">Featured Video</a>
+        <a href="#gallery" class="text-brand-cream hover:text-brand-gold transition-colors">Videos & Tracks</a>
+        <a href="#about" class="text-brand-cream hover:text-brand-gold transition-colors">About</a>
+        <a href="#community" class="text-brand-cream hover:text-brand-gold transition-colors">Connect</a>
+      </nav>
+
+      <!-- Right Action CTA -->
+      <div class="hidden md:flex items-center space-x-4">
+        <a href="https://youtube.com/@devineharmony4u" target="_blank" rel="noopener" class="px-4 py-2 rounded-full border border-brand-gold/40 text-brand-gold hover:bg-brand-gold hover:text-brand-darkBg text-xs font-semibold tracking-wider uppercase transition-all duration-300 flex items-center space-x-2">
+          <i class="fa-brands fa-youtube text-sm"></i>
+          <span>Subscribe</span>
+        </a>
+      </div>
+
+      <!-- Mobile Menu Button -->
+      <button id="mobile-menu-btn" class="md:hidden text-brand-cream p-2 focus:outline-none" aria-label="Toggle Navigation">
+        <i class="fa-solid fa-bars text-xl" id="menu-icon"></i>
+      </button>
+    </div>
+
+    <!-- Mobile Dropdown Menu -->
+    <div id="mobile-menu" class="hidden md:hidden bg-brand-darkCard border-b border-brand-darkAccent px-6 py-6 space-y-4">
+      <a href="#home" class="mobile-link block text-lg font-medium text-brand-cream hover:text-brand-gold">Home</a>
+      <a href="#featured" class="mobile-link block text-lg font-medium text-brand-cream hover:text-brand-gold">Featured Video</a>
+      <a href="#gallery" class="mobile-link block text-lg font-medium text-brand-cream hover:text-brand-gold">Videos & Tracks</a>
+      <a href="#about" class="mobile-link block text-lg font-medium text-brand-cream hover:text-brand-gold">About</a>
+      <a href="#community" class="mobile-link block text-lg font-medium text-brand-cream hover:text-brand-gold">Connect</a>
+      <div class="pt-4 border-t border-brand-darkAccent flex justify-center">
+        <a href="https://youtube.com/@devineharmony4u" target="_blank" class="w-full text-center py-2.5 rounded-full bg-brand-gold text-brand-darkBg font-semibold text-sm">
+          Subscribe on YouTube
+        </a>
+      </div>
+    </div>
+  </header>
+
+
+  <!-- ================= HERO SECTION ================= -->
+  <section id="home" class="relative min-h-screen pt-28 pb-16 flex items-center justify-center overflow-hidden">
+    <!-- Golden Warm Ambient Backgrounds -->
+    <div class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-brand-gold/15 rounded-full blur-[120px] pointer-events-none glow-bg"></div>
+    <div class="absolute bottom-10 right-10 w-[350px] h-[350px] bg-brand-goldLight/10 rounded-full blur-[100px] pointer-events-none"></div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full relative z-10">
+      <div class="text-center max-w-3xl mx-auto space-y-6">
+        
+        <div class="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full border border-brand-gold/30 bg-brand-darkCard/60 backdrop-blur-md text-brand-goldLight text-xs tracking-widest uppercase mb-2">
+          <span class="w-2 h-2 rounded-full bg-brand-gold animate-ping"></span>
+          <span>Official Music & Video Portal</span>
+        </div>
+
+        <h1 class="font-serif text-4xl sm:text-6xl md:text-7xl font-bold tracking-tight text-brand-cream leading-tight">
+          DIVINE <span class="italic font-normal text-transparent bg-clip-text bg-gradient-to-r from-brand-gold via-brand-goldLight to-brand-gold">HARMONY</span>
+        </h1>
+
+        <p class="text-lg sm:text-xl text-brand-creamMuted/90 font-light max-w-2xl mx-auto leading-relaxed">
+          A tranquil journey of peace, meditation, sacred chants, and soulful melodies crafted to elevate your spirit.
+        </p>
+
+        <!-- CTA Buttons -->
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
+          <button onclick="playHeroVideo()" class="w-full sm:w-auto px-8 py-3.5 rounded-full bg-gradient-to-r from-brand-gold to-brand-goldDark text-brand-darkBg font-semibold shadow-gold-glow hover:shadow-gold-glow-lg hover:scale-105 transition-all duration-300 flex items-center justify-center space-x-2">
+            <i class="fa-solid fa-play text-sm"></i>
+            <span>Watch Latest Video</span>
+          </button>
+
+          <a href="#gallery" class="w-full sm:w-auto px-8 py-3.5 rounded-full border border-brand-gold/40 text-brand-cream hover:bg-brand-darkCard/80 hover:border-brand-gold transition-all duration-300 flex items-center justify-center space-x-2">
+            <i class="fa-solid fa-music text-sm text-brand-gold"></i>
+            <span>Explore Tracks</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Hero Interactive Video Player Banner -->
+      <div class="mt-12 sm:mt-16 max-w-4xl mx-auto">
+        <div class="relative rounded-2xl overflow-hidden border border-brand-gold/30 bg-brand-darkCard shadow-2xl group">
+          
+          <!-- Poster Preview Overlay -->
+          <div id="hero-poster" class="relative aspect-video bg-cover bg-center flex items-center justify-center" style="background-image: linear-gradient(to bottom, rgba(28,26,23,0.3), rgba(28,26,23,0.8)), url('https://images.unsplash.com/photo-1518241353330-0f7941c2d9b5?auto=format&fit=crop&w=1400&q=80');">
+            
+            <div class="text-center p-6 space-y-4">
+              <button onclick="playHeroVideo()" class="w-20 h-20 sm:w-24 sm:h-24 rounded-full bg-brand-gold/90 text-brand-darkBg flex items-center justify-center text-2xl sm:text-3xl pl-1 shadow-gold-glow hover:scale-110 hover:bg-brand-gold transition-all duration-300 mx-auto">
+                <i class="fa-solid fa-play"></i>
+              </button>
+              <div>
+                <p class="text-xs uppercase tracking-widest text-brand-gold font-semibold">Now Featured</p>
+                <h2 class="font-serif text-xl sm:text-2xl font-semibold text-brand-cream">741Hz Divine Cleansing Chants & Meditation</h2>
+              </div>
+            </div>
+
+            <!-- Custom Player Bottom Bar Simulation -->
+            <div class="absolute bottom-0 left-0 w-full p-4 bg-gradient-to-t from-brand-darkBg via-brand-darkBg/80 to-transparent flex items-center justify-between text-xs text-brand-creamMuted">
+              <div class="flex items-center space-x-3">
+                <span class="w-2 h-2 rounded-full bg-red-500 animate-pulse"></span>
+                <span class="font-medium text-brand-cream">4K Ultra HD Audio</span>
+              </div>
+              <div class="flex items-center space-x-4">
+                <span><i class="fa-regular fa-clock mr-1"></i> 45:00</span>
+                <span><i class="fa-regular fa-eye mr-1"></i> 128K views</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Active Embedded Video Container (Hidden by default) -->
+          <div id="hero-video-container" class="hidden aspect-video w-full bg-black">
+            <iframe id="hero-iframe" class="w-full h-full" src="" title="Divine Harmony Video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ================= FEATURED MUSIC VIDEO SHOWCASE ================= -->
+  <section id="featured" class="py-20 bg-brand-darkCard/50 border-y border-brand-darkAccent/60 relative">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="flex flex-col md:flex-row items-center justify-between gap-12">
+        
+        <!-- Video Preview Container -->
+        <div class="w-full md:w-1/2">
+          <div class="relative rounded-2xl overflow-hidden border border-brand-gold/30 shadow-gold-glow bg-brand-darkCard group">
+            <img src="https://images.unsplash.com/photo-1506126613408-eca07ce68773?auto=format&fit=crop&w=1000&q=80" alt="Meditation Video Thumbnail" class="w-full aspect-video object-cover group-hover:scale-105 transition-transform duration-500">
+            <div class="absolute inset-0 bg-brand-darkBg/40 group-hover:bg-brand-darkBg/20 transition-colors flex items-center justify-center">
+              <button onclick="openVideoModal('https://www.youtube.com/embed/dQw4w9WgXcQ')" class="w-16 h-16 rounded-full bg-brand-gold text-brand-darkBg flex items-center justify-center text-xl pl-1 shadow-lg hover:scale-110 transition-transform">
+                <i class="fa-solid fa-play"></i>
+              </button>
+            </div>
+            <span class="absolute top-4 left-4 bg-brand-darkBg/80 backdrop-blur-md px-3 py-1 rounded-full text-xs font-semibold text-brand-gold border border-brand-gold/30">
+              New Release
+            </span>
+          </div>
+        </div>
+
+        <!-- Video Information & Actions -->
+        <div class="w-full md:w-1/2 space-y-6">
+          <div class="space-y-2">
+            <span class="text-xs font-semibold uppercase tracking-widest text-brand-gold">Masterpiece Spotlight</span>
+            <h2 class="font-serif text-3xl sm:text-4xl font-bold text-brand-cream">Sacred Golden Hour - Peaceful Sunset Chants</h2>
+          </div>
+
+          <p class="text-brand-creamMuted text-sm sm:text-base leading-relaxed">
+            Immerse yourself in deep tranquility with our latest composition. Designed with 432Hz ambient soundscapes and sacred chanting, this session restores inner peace, removes negative energy, and aligns your mind and body.
+          </p>
+
+          <div class="grid grid-cols-3 gap-4 pt-2 border-y border-brand-darkAccent/80 py-4 text-center">
+            <div>
+              <p class="text-xs text-brand-creamMuted">Frequency</p>
+              <p class="font-semibold text-brand-gold">432 Hz</p>
+            </div>
+            <div>
+              <p class="text-xs text-brand-creamMuted">Duration</p>
+              <p class="font-semibold text-brand-cream">1 Hour</p>
+            </div>
+            <div>
+              <p class="text-xs text-brand-creamMuted">Mood</p>
+              <p class="font-semibold text-brand-cream">Serene & Calm</p>
+            </div>
+          </div>
+
+          <!-- Buttons -->
+          <div class="flex flex-wrap gap-4 pt-2">
+            <a href="https://youtube.com/@devineharmony4u" target="_blank" class="px-6 py-3 rounded-full bg-brand-gold text-brand-darkBg font-semibold text-xs tracking-wider uppercase hover:bg-brand-goldLight transition-colors flex items-center space-x-2">
+              <i class="fa-brands fa-youtube text-base"></i>
+              <span>Watch on YouTube</span>
+            </a>
+
+            <button onclick="shareContent('Sacred Golden Hour - Divine Harmony', window.location.href)" class="px-6 py-3 rounded-full border border-brand-gold/40 text-brand-cream text-xs font-semibold tracking-wider uppercase hover:bg-brand-darkAccent transition-colors flex items-center space-x-2">
+              <i class="fa-solid fa-share-nodes"></i>
+              <span>Share</span>
+            </button>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ================= VIDEO & AUDIO GALLERY ================= -->
+  <section id="gallery" class="py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    
+    <div class="text-center max-w-2xl mx-auto mb-12 space-y-3">
+      <span class="text-xs font-semibold uppercase tracking-widest text-brand-gold">Library of Peace</span>
+      <h2 class="font-serif text-3xl sm:text-5xl font-bold text-brand-cream">Explore Videos & Tracks</h2>
+      <p class="text-brand-creamMuted text-sm sm:text-base">Filter through our collection of visual music journeys, meditations, and ambient soundtracks.</p>
+    </div>
+
+    <!-- Filter Tabs -->
+    <div class="flex flex-wrap items-center justify-center gap-2 sm:gap-4 mb-12">
+      <button onclick="filterGallery('all')" class="filter-btn active px-5 py-2 rounded-full text-xs sm:text-sm font-medium border border-brand-gold bg-brand-gold text-brand-darkBg transition-all">All Releases</button>
+      <button onclick="filterGallery('videos')" class="filter-btn px-5 py-2 rounded-full text-xs sm:text-sm font-medium border border-brand-darkAccent bg-brand-darkCard text-brand-creamMuted hover:border-brand-gold/50 transition-all">Music Videos</button>
+      <button onclick="filterGallery('meditations')" class="filter-btn px-5 py-2 rounded-full text-xs sm:text-sm font-medium border border-brand-darkAccent bg-brand-darkCard text-brand-creamMuted hover:border-brand-gold/50 transition-all">Meditations</button>
+      <button onclick="filterGallery('chants')" class="filter-btn px-5 py-2 rounded-full text-xs sm:text-sm font-medium border border-brand-darkAccent bg-brand-darkCard text-brand-creamMuted hover:border-brand-gold/50 transition-all">Chants</button>
+      <button onclick="filterGallery('ambient')" class="filter-btn px-5 py-2 rounded-full text-xs sm:text-sm font-medium border border-brand-darkAccent bg-brand-darkCard text-brand-creamMuted hover:border-brand-gold/50 transition-all">Ambient</button>
+    </div>
+
+    <!-- Gallery Grid -->
+    <div id="gallery-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+      
+      <!-- Card 1 -->
+      <div class="gallery-item videos group bg-brand-darkCard rounded-2xl overflow-hidden border border-brand-darkAccent hover:border-brand-gold/40 transition-all duration-300 flex flex-col">
+        <div class="relative aspect-video overflow-hidden">
+          <img src="https://images.unsplash.com/photo-1518241353330-0f7941c2d9b5?auto=format&fit=crop&w=800&q=80" alt="Video" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+          <div class="absolute inset-0 bg-brand-darkBg/30 group-hover:bg-brand-darkBg/10 transition-colors flex items-center justify-center">
+            <button onclick="openVideoModal('https://www.youtube.com/embed/dQw4w9WgXcQ')" class="w-12 h-12 rounded-full bg-brand-gold/90 text-brand-darkBg flex items-center justify-center pl-1 shadow-md group-hover:scale-110 transition-transform">
+              <i class="fa-solid fa-play"></i>
+            </button>
+          </div>
+          <span class="absolute bottom-3 right-3 bg-brand-darkBg/90 px-2.5 py-1 rounded text-xs text-brand-cream">10:45</span>
+        </div>
+        <div class="p-6 flex-1 flex flex-col justify-between space-y-4">
+          <div>
+            <span class="text-[10px] font-semibold uppercase tracking-wider text-brand-gold">Music Video</span>
+            <h3 class="font-serif text-lg font-bold text-brand-cream mt-1 group-hover:text-brand-gold transition-colors">Eternal Sunrise Acoustic Waves</h3>
+            <p class="text-xs text-brand-creamMuted mt-2 line-clamp-2">Gentle guitar soundscapes paired with golden morning visuals for starting your day in full serenity.</p>
+          </div>
+          <div class="flex items-center justify-between text-xs text-brand-creamMuted pt-4 border-t border-brand-darkAccent">
+            <span><i class="fa-regular fa-eye mr-1"></i> 84K views</span>
+            <button onclick="playAudioTrack('Eternal Sunrise Acoustic Waves', 'Divine Harmony', 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3')" class="text-brand-gold hover:underline flex items-center space-x-1">
+              <i class="fa-solid fa-headphones"></i>
+              <span>Listen Audio</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="gallery-item meditations group bg-brand-darkCard rounded-2xl overflow-hidden border border-brand-darkAccent hover:border-brand-gold/40 transition-all duration-300 flex flex-col">
+        <div class="relative aspect-video overflow-hidden">
+          <img src="https://images.unsplash.com/photo-1506126613408-eca07ce68773?auto=format&fit=crop&w=800&q=80" alt="Video" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+          <div class="absolute inset-0 bg-brand-darkBg/30 group-hover:bg-brand-darkBg/10 transition-colors flex items-center justify-center">
+            <button onclick="openVideoModal('https://www.youtube.com/embed/dQw4w9WgXcQ')" class="w-12 h-12 rounded-full bg-brand-gold/90 text-brand-darkBg flex items-center justify-center pl-1 shadow-md group-hover:scale-110 transition-transform">
+              <i class="fa-solid fa-play"></i>
+            </button>
+          </div>
+          <span class="absolute bottom-3 right-3 bg-brand-darkBg/90 px-2.5 py-1 rounded text-xs text-brand-cream">30:00</span>
+        </div>
+        <div class="p-6 flex-1 flex flex-col justify-between space-y-4">
+          <div>
+            <span class="text-[10px] font-semibold uppercase tracking-wider text-brand-gold">Meditation</span>
+            <h3 class="font-serif text-lg font-bold text-brand-cream mt-1 group-hover:text-brand-gold transition-colors">Peaceful Mornings 528Hz Miracle Tone</h3>
+            <p class="text-xs text-brand-creamMuted mt-2 line-clamp-2">Awaken your mind and body with 528Hz frequency designed for deep positive aura healing.</p>
+          </div>
+          <div class="flex items-center justify-between text-xs text-brand-creamMuted pt-4 border-t border-brand-darkAccent">
+            <span><i class="fa-regular fa-eye mr-1"></i> 142K views</span>
+            <button onclick="playAudioTrack('Peaceful Mornings 528Hz Tone', 'Divine Harmony', 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3')" class="text-brand-gold hover:underline flex items-center space-x-1">
+              <i class="fa-solid fa-headphones"></i>
+              <span>Listen Audio</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="gallery-item chants group bg-brand-darkCard rounded-2xl overflow-hidden border border-brand-darkAccent hover:border-brand-gold/40 transition-all duration-300 flex flex-col">
+        <div class="relative aspect-video overflow-hidden">
+          <img src="https://images.unsplash.com/photo-1519834785169-98be25ec3f84?auto=format&fit=crop&w=800&q=80" alt="Video" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+          <div class="absolute inset-0 bg-brand-darkBg/30 group-hover:bg-brand-darkBg/10 transition-colors flex items-center justify-center">
+            <button onclick="openVideoModal('https://www.youtube.com/embed/dQw4w9WgXcQ')" class="w-12 h-12 rounded-full bg-brand-gold/90 text-brand-darkBg flex items-center justify-center pl-1 shadow-md group-hover:scale-110 transition-transform">
+              <i class="fa-solid fa-play"></i>
+            </button>
+          </div>
+          <span class="absolute bottom-3 right-3 bg-brand-darkBg/90 px-2.5 py-1 rounded text-xs text-brand-cream">21:15</span>
+        </div>
+        <div class="p-6 flex-1 flex flex-col justify-between space-y-4">
+          <div>
+            <span class="text-[10px] font-semibold uppercase tracking-wider text-brand-gold">Chants</span>
+            <h3 class="font-serif text-lg font-bold text-brand-cream mt-1 group-hover:text-brand-gold transition-colors">Sacred Evening Chants & Flute</h3>
+            <p class="text-xs text-brand-creamMuted mt-2 line-clamp-2">Authentic devotional vocal chants blended seamlessly with soothing bamboo flute tones.</p>
+          </div>
+          <div class="flex items-center justify-between text-xs text-brand-creamMuted pt-4 border-t border-brand-darkAccent">
+            <span><i class="fa-regular fa-eye mr-1"></i> 98K views</span>
+            <button onclick="playAudioTrack('Sacred Evening Chants', 'Divine Harmony', 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3')" class="text-brand-gold hover:underline flex items-center space-x-1">
+              <i class="fa-solid fa-headphones"></i>
+              <span>Listen Audio</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 4 -->
+      <div class="gallery-item ambient group bg-brand-darkCard rounded-2xl overflow-hidden border border-brand-darkAccent hover:border-brand-gold/40 transition-all duration-300 flex flex-col">
+        <div class="relative aspect-video overflow-hidden">
+          <img src="https://images.unsplash.com/photo-1470225620780-dba8ba36b745?auto=format&fit=crop&w=800&q=80" alt="Video" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+          <div class="absolute inset-0 bg-brand-darkBg/30 group-hover:bg-brand-darkBg/10 transition-colors flex items-center justify-center">
+            <button onclick="openVideoModal('https://www.youtube.com/embed/dQw4w9WgXcQ')" class="w-12 h-12 rounded-full bg-brand-gold/90 text-brand-darkBg flex items-center justify-center pl-1 shadow-md group-hover:scale-110 transition-transform">
+              <i class="fa-solid fa-play"></i>
+            </button>
+          </div>
+          <span class="absolute bottom-3 right-3 bg-brand-darkBg/90 px-2.5 py-1 rounded text-xs text-brand-cream">1:00:00</span>
+        </div>
+        <div class="p-6 flex-1 flex flex-col justify-between space-y-4">
+          <div>
+            <span class="text-[10px] font-semibold uppercase tracking-wider text-brand-gold">Ambient</span>
+            <h3 class="font-serif text-lg font-bold text-brand-cream mt-1 group-hover:text-brand-gold transition-colors">Golden Sunset Deep Sleep Ambient</h3>
+            <p class="text-xs text-brand-creamMuted mt-2 line-clamp-2">Soft atmospheric drone harmonies and gentle water sounds for deep stress relief and sleep.</p>
+          </div>
+          <div class="flex items-center justify-between text-xs text-brand-creamMuted pt-4 border-t border-brand-darkAccent">
+            <span><i class="fa-regular fa-eye mr-1"></i> 210K views</span>
+            <button onclick="playAudioTrack('Golden Sunset Deep Sleep', 'Divine Harmony', 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-4.mp3')" class="text-brand-gold hover:underline flex items-center space-x-1">
+              <i class="fa-solid fa-headphones"></i>
+              <span>Listen Audio</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 5 -->
+      <div class="gallery-item chants group bg-brand-darkCard rounded-2xl overflow-hidden border border-brand-darkAccent hover:border-brand-gold/40 transition-all duration-300 flex flex-col">
+        <div class="relative aspect-video overflow-hidden">
+          <img src="https://images.unsplash.com/photo-1545205597-3d9d02c29597?auto=format&fit=crop&w=800&q=80" alt="Video" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+          <div class="absolute inset-0 bg-brand-darkBg/30 group-hover:bg-brand-darkBg/10 transition-colors flex items-center justify-center">
+            <button onclick="openVideoModal('https://www.youtube.com/embed/dQw4w9WgXcQ')" class="w-12 h-12 rounded-full bg-brand-gold/90 text-brand-darkBg flex items-center justify-center pl-1 shadow-md group-hover:scale-110 transition-transform">
+              <i class="fa-solid fa-play"></i>
+            </button>
+          </div>
+          <span class="absolute bottom-3 right-3 bg-brand-darkBg/90 px-2.5 py-1 rounded text-xs text-brand-cream">15:30</span>
+        </div>
+        <div class="p-6 flex-1 flex flex-col justify-between space-y-4">
+          <div>
+            <span class="text-[10px] font-semibold uppercase tracking-wider text-brand-gold">Chants</span>
+            <h3 class="font-serif text-lg font-bold text-brand-cream mt-1 group-hover:text-brand-gold transition-colors">Universal Heart Mantra (432Hz)</h3>
+            <p class="text-xs text-brand-creamMuted mt-2 line-clamp-2">Repetitive healing mantras crafted to balance emotional energy and open heart space.</p>
+          </div>
+          <div class="flex items-center justify-between text-xs text-brand-creamMuted pt-4 border-t border-brand-darkAccent">
+            <span><i class="fa-regular fa-eye mr-1"></i> 65K views</span>
+            <button onclick="playAudioTrack('Universal Heart Mantra', 'Divine Harmony', 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-5.mp3')" class="text-brand-gold hover:underline flex items-center space-x-1">
+              <i class="fa-solid fa-headphones"></i>
+              <span>Listen Audio</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 6 -->
+      <div class="gallery-item meditations group bg-brand-darkCard rounded-2xl overflow-hidden border border-brand-darkAccent hover:border-brand-gold/40 transition-all duration-300 flex flex-col">
+        <div class="relative aspect-video overflow-hidden">
+          <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80" alt="Video" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+          <div class="absolute inset-0 bg-brand-darkBg/30 group-hover:bg-brand-darkBg/10 transition-colors flex items-center justify-center">
+            <button onclick="openVideoModal('https://www.youtube.com/embed/dQw4w9WgXcQ')" class="w-12 h-12 rounded-full bg-brand-gold/90 text-brand-darkBg flex items-center justify-center pl-1 shadow-md group-hover:scale-110 transition-transform">
+              <i class="fa-solid fa-play"></i>
+            </button>
+          </div>
+          <span class="absolute bottom-3 right-3 bg-brand-darkBg/90 px-2.5 py-1 rounded text-xs text-brand-cream">45:00</span>
+        </div>
+        <div class="p-6 flex-1 flex flex-col justify-between space-y-4">
+          <div>
+            <span class="text-[10px] font-semibold uppercase tracking-wider text-brand-gold">Meditation</span>
+            <h3 class="font-serif text-lg font-bold text-brand-cream mt-1 group-hover:text-brand-gold transition-colors">Ocean Waves Meditation Harmony</h3>
+            <p class="text-xs text-brand-creamMuted mt-2 line-clamp-2">Authentic coastal wave recordings mixed with delicate synth textures and acoustic warmth.</p>
+          </div>
+          <div class="flex items-center justify-between text-xs text-brand-creamMuted pt-4 border-t border-brand-darkAccent">
+            <span><i class="fa-regular fa-eye mr-1"></i> 175K views</span>
+            <button onclick="playAudioTrack('Ocean Waves Meditation', 'Divine Harmony', 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-6.mp3')" class="text-brand-gold hover:underline flex items-center space-x-1">
+              <i class="fa-solid fa-headphones"></i>
+              <span>Listen Audio</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ================= ABOUT DIVINE HARMONY & STATS ================= -->
+  <section id="about" class="py-20 bg-brand-darkCard/60 border-y border-brand-darkAccent/80">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        
+        <!-- Bio -->
+        <div class="lg:col-span-7 space-y-6">
+          <span class="text-xs font-semibold uppercase tracking-widest text-brand-gold">The Vision Behind</span>
+          <h2 class="font-serif text-3xl sm:text-5xl font-bold text-brand-cream leading-tight">Welcome to Divine Harmony</h2>
+          
+          <p class="text-brand-creamMuted text-base sm:text-lg leading-relaxed">
+            Divine Harmony (<span class="text-brand-gold">@devineharmony4u</span>) is a sanctuary created for listeners seeking respite, spiritual awakening, and mental clarity through music.
+          </p>
+
+          <p class="text-brand-creamMuted text-sm sm:text-base leading-relaxed">
+            Our compositions combine sacred ancient frequencies (432Hz, 528Hz, 741Hz), atmospheric textures, traditional acoustic instrumentation, and calming visual vistas. Whether you need background soundscapes for meditation, study, deep sleep, or daily prayer, Divine Harmony is your portal to peace.
+          </p>
+
+          <div class="pt-4 flex flex-wrap gap-4">
+            <a href="https://whatsapp.com" target="_blank" class="px-6 py-3 rounded-full bg-emerald-600 hover:bg-emerald-500 text-white font-semibold text-xs tracking-wider uppercase transition-colors flex items-center space-x-2">
+              <i class="fa-brands fa-whatsapp text-lg"></i>
+              <span>Join WhatsApp Channel</span>
+            </a>
+            <a href="#community" class="px-6 py-3 rounded-full border border-brand-gold/40 text-brand-cream hover:border-brand-gold text-xs font-semibold tracking-wider uppercase transition-colors">
+              Community Hub
+            </a>
+          </div>
+        </div>
+
+        <!-- Stats Card -->
+        <div class="lg:col-span-5">
+          <div class="p-8 rounded-3xl bg-brand-darkBg border border-brand-gold/20 shadow-gold-glow space-y-8">
+            <h3 class="font-serif text-xl font-bold text-brand-gold text-center">Channel Milestones</h3>
+
+            <div class="grid grid-cols-2 gap-6 text-center">
+              <div class="p-4 rounded-2xl bg-brand-darkCard/80 border border-brand-darkAccent">
+                <p class="font-serif text-3xl sm:text-4xl font-bold text-brand-cream">250K+</p>
+                <p class="text-xs text-brand-gold uppercase tracking-wider mt-1">Subscribers</p>
+              </div>
+
+              <div class="p-4 rounded-2xl bg-brand-darkCard/80 border border-brand-darkAccent">
+                <p class="font-serif text-3xl sm:text-4xl font-bold text-brand-cream">15M+</p>
+                <p class="text-xs text-brand-gold uppercase tracking-wider mt-1">Total Views</p>
+              </div>
+
+              <div class="p-4 rounded-2xl bg-brand-darkCard/80 border border-brand-darkAccent">
+                <p class="font-serif text-3xl sm:text-4xl font-bold text-brand-cream">120+</p>
+                <p class="text-xs text-brand-gold uppercase tracking-wider mt-1">Tracks Released</p>
+              </div>
+
+              <div class="p-4 rounded-2xl bg-brand-darkCard/80 border border-brand-darkAccent">
+                <p class="font-serif text-3xl sm:text-4xl font-bold text-brand-cream">50+</p>
+                <p class="text-xs text-brand-gold uppercase tracking-wider mt-1">Countries Reached</p>
+              </div>
+            </div>
+
+            <div class="p-4 rounded-2xl bg-brand-gold/10 border border-brand-gold/30 text-center">
+              <p class="text-xs text-brand-goldLight italic">"Music that connects the soul to peace and divine serenity."</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ================= SOCIAL & COMMUNITY SECTION ================= -->
+  <section id="community" class="py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    
+    <div class="text-center max-w-2xl mx-auto mb-16 space-y-3">
+      <span class="text-xs font-semibold uppercase tracking-widest text-brand-gold">Stay Connected</span>
+      <h2 class="font-serif text-3xl sm:text-5xl font-bold text-brand-cream">Join Our Community</h2>
+      <p class="text-brand-creamMuted text-sm sm:text-base">Connect directly with @devineharmony4u across all platforms or subscribe for immediate release updates.</p>
+    </div>
+
+    <!-- Social Grid -->
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 mb-16">
+      
+      <!-- YouTube -->
+      <a href="https://youtube.com/@devineharmony4u" target="_blank" class="p-6 rounded-2xl bg-brand-darkCard border border-brand-darkAccent hover:border-red-500/50 hover:bg-brand-darkCard/80 transition-all text-center group">
+        <div class="w-12 h-12 rounded-full bg-red-500/10 text-red-500 flex items-center justify-center text-2xl mx-auto mb-3 group-hover:scale-110 transition-transform">
+          <i class="fa-brands fa-youtube"></i>
+        </div>
+        <h4 class="font-semibold text-brand-cream">YouTube</h4>
+        <p class="text-xs text-brand-creamMuted mt-1">@devineharmony4u</p>
+      </a>
+
+      <!-- WhatsApp -->
+      <a href="https://whatsapp.com" target="_blank" class="p-6 rounded-2xl bg-brand-darkCard border border-brand-darkAccent hover:border-emerald-500/50 hover:bg-brand-darkCard/80 transition-all text-center group">
+        <div class="w-12 h-12 rounded-full bg-emerald-500/10 text-emerald-500 flex items-center justify-center text-2xl mx-auto mb-3 group-hover:scale-110 transition-transform">
+          <i class="fa-brands fa-whatsapp"></i>
+        </div>
+        <h4 class="font-semibold text-brand-cream">WhatsApp</h4>
+        <p class="text-xs text-brand-creamMuted mt-1">Channel Updates</p>
+      </a>
+
+      <!-- Spotify -->
+      <a href="https://spotify.com" target="_blank" class="p-6 rounded-2xl bg-brand-darkCard border border-brand-darkAccent hover:border-green-500/50 hover:bg-brand-darkCard/80 transition-all text-center group">
+        <div class="w-12 h-12 rounded-full bg-green-500/10 text-green-500 flex items-center justify-center text-2xl mx-auto mb-3 group-hover:scale-110 transition-transform">
+          <i class="fa-brands fa-spotify"></i>
+        </div>
+        <h4 class="font-semibold text-brand-cream">Spotify</h4>
+        <p class="text-xs text-brand-creamMuted mt-1">Divine Harmony</p>
+      </a>
+
+      <!-- Instagram -->
+      <a href="https://instagram.com" target="_blank" class="p-6 rounded-2xl bg-brand-darkCard border border-brand-darkAccent hover:border-pink-500/50 hover:bg-brand-darkCard/80 transition-all text-center group">
+        <div class="w-12 h-12 rounded-full bg-pink-500/10 text-pink-500 flex items-center justify-center text-2xl mx-auto mb-3 group-hover:scale-110 transition-transform">
+          <i class="fa-brands fa-instagram"></i>
+        </div>
+        <h4 class="font-semibold text-brand-cream">Instagram</h4>
+        <p class="text-xs text-brand-creamMuted mt-1">@devineharmony4u</p>
+      </a>
+
+    </div>
+
+    <!-- Newsletter Form -->
+    <div class="max-w-3xl mx-auto p-8 sm:p-12 rounded-3xl bg-gradient-to-br from-brand-darkCard to-brand-darkBg border border-brand-gold/30 shadow-gold-glow text-center space-y-6">
+      <div class="w-14 h-14 rounded-full bg-brand-gold/20 text-brand-gold flex items-center justify-center text-2xl mx-auto">
+        <i class="fa-regular fa-paper-plane"></i>
+      </div>
+      <div>
+        <h3 class="font-serif text-2xl sm:text-3xl font-bold text-brand-cream">Never Miss a Peaceful Track</h3>
+        <p class="text-brand-creamMuted text-xs sm:text-sm mt-2">Subscribe to receive new track announcements, peaceful audio downloads, and spiritual newsletters directly.</p>
+      </div>
+
+      <form id="newsletter-form" onsubmit="handleNewsletterSubmit(event)" class="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
+        <input type="email" required placeholder="Enter your email address" class="flex-1 px-5 py-3.5 rounded-full bg-brand-darkBg border border-brand-darkAccent text-brand-cream placeholder-brand-creamMuted/50 focus:outline-none focus:border-brand-gold text-sm">
+        <button type="submit" class="px-8 py-3.5 rounded-full bg-brand-gold text-brand-darkBg font-semibold text-xs uppercase tracking-wider hover:bg-brand-goldLight transition-colors">
+          Subscribe
+        </button>
+      </form>
+      <div id="newsletter-success" class="hidden text-xs text-brand-gold font-medium">✨ Thank you for subscribing! May peace be with you.</div>
+    </div>
+
+  </section>
+
+
+  <!-- ================= FOOTER ================= -->
+  <footer class="bg-brand-darkBg border-t border-brand-darkAccent/80 pt-16 pb-28 text-brand-creamMuted text-xs">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-10 mb-12">
+        
+        <!-- Col 1 -->
+        <div class="space-y-4 md:col-span-2">
+          <div class="flex items-center space-x-3">
+            <div class="w-8 h-8 rounded-full bg-brand-gold flex items-center justify-center text-brand-darkBg font-serif font-bold text-sm">
+              <i class="fa-solid fa-om text-brand-darkBg text-xs"></i>
+            </div>
+            <span class="font-serif text-lg font-bold text-brand-cream">DIVINE HARMONY</span>
+          </div>
+          <p class="text-brand-creamMuted/80 text-xs leading-relaxed max-w-sm">
+            Providing high-quality meditation, ambient soundscapes, and devotional music videos to bring tranquility to listeners worldwide.
+          </p>
+          <p class="text-brand-gold text-xs">Handle: @devineharmony4u</p>
+        </div>
+
+        <!-- Col 2 -->
+        <div class="space-y-3">
+          <p class="font-semibold text-brand-cream uppercase tracking-wider">Quick Navigation</p>
+          <ul class="space-y-2">
+            <li><a href="#home" class="hover:text-brand-gold transition-colors">Home Portal</a></li>
+            <li><a href="#featured" class="hover:text-brand-gold transition-colors">Featured Video</a></li>
+            <li><a href="#gallery" class="hover:text-brand-gold transition-colors">Audio & Video Grid</a></li>
+            <li><a href="#about" class="hover:text-brand-gold transition-colors">Artist Bio</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 3 -->
+        <div class="space-y-3">
+          <p class="font-semibold text-brand-cream uppercase tracking-wider">Connect</p>
+          <ul class="space-y-2">
+            <li><a href="https://youtube.com/@devineharmony4u" target="_blank" class="hover:text-brand-gold transition-colors">YouTube Channel</a></li>
+            <li><a href="https://whatsapp.com" target="_blank" class="hover:text-brand-gold transition-colors">WhatsApp Channel</a></li>
+            <li><a href="https://spotify.com" target="_blank" class="hover:text-brand-gold transition-colors">Spotify Music</a></li>
+            <li><a href="https://instagram.com" target="_blank" class="hover:text-brand-gold transition-colors">Instagram Updates</a></li>
+          </ul>
+        </div>
+
+      </div>
+
+      <div class="pt-8 border-t border-brand-darkAccent/60 flex flex-col sm:flex-row items-center justify-between text-brand-creamMuted/70 space-y-4 sm:space-y-0">
+        <p>© 2026 Divine Harmony (@devineharmony4u). All rights reserved.</p>
+        <p class="italic">Crafted for Peace, Spiritual Clarity & Mindfulness</p>
+      </div>
+
+    </div>
+  </footer>
+
+
+  <!-- ================= INTERACTIVE MUSIC PLAYER BAR (BOTTOM STICKY) ================= -->
+  <div id="audio-player-bar" class="fixed bottom-0 left-0 w-full z-50 bg-brand-darkCard/95 border-t border-brand-gold/30 backdrop-blur-md px-4 py-3 shadow-2xl transition-transform duration-300">
+    <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3 sm:gap-6">
+      
+      <!-- Track Details -->
+      <div class="flex items-center space-x-4 w-full sm:w-1/4">
+        <div class="w-12 h-12 rounded-lg bg-brand-darkAccent border border-brand-gold/30 flex items-center justify-center text-brand-gold overflow-hidden shrink-0">
+          <i id="player-thumb-icon" class="fa-solid fa-music text-lg"></i>
+        </div>
+        <div class="truncate">
+          <p id="player-title" class="text-sm font-semibold text-brand-cream truncate">Peaceful Mornings 528Hz Tone</p>
+          <p id="player-artist" class="text-xs text-brand-gold/80 truncate">Divine Harmony (@devineharmony4u)</p>
+        </div>
+      </div>
+
+      <!-- Controls & Progress -->
+      <div class="flex flex-col items-center w-full sm:w-2/4 space-y-1">
+        <div class="flex items-center space-x-6">
+          <button onclick="prevTrack()" class="text-brand-creamMuted hover:text-brand-gold transition-colors text-sm"><i class="fa-solid fa-backward-step"></i></button>
+          
+          <button id="main-play-btn" onclick="toggleAudioPlay()" class="w-10 h-10 rounded-full bg-brand-gold text-brand-darkBg flex items-center justify-center text-sm shadow-gold-glow hover:scale-105 transition-transform">
+            <i class="fa-solid fa-play" id="play-icon"></i>
+          </button>
+
+          <button onclick="nextTrack()" class="text-brand-creamMuted hover:text-brand-gold transition-colors text-sm"><i class="fa-solid fa-forward-step"></i></button>
+        </div>
+
+        <!-- Progress Seek Bar -->
+        <div class="w-full flex items-center space-x-3 text-[10px] text-brand-creamMuted">
+          <span id="current-time">0:00</span>
+          <div class="flex-1 bg-brand-darkAccent h-1.5 rounded-full overflow-hidden cursor-pointer" id="seek-container" onclick="seekAudio(event)">
+            <div id="seek-bar" class="bg-brand-gold h-full w-0 transition-all"></div>
+          </div>
+          <span id="total-duration">3:45</span>
+        </div>
+      </div>
+
+      <!-- Volume & Visualizer -->
+      <div class="hidden sm:flex items-center justify-end space-x-4 w-1/4">
+        <!-- Sound Wave Visualizer Simulation -->
+        <div id="visualizer" class="flex items-end space-x-1 h-5">
+          <div class="bar w-1 bg-brand-gold rounded"></div>
+          <div class="bar w-1 bg-brand-gold rounded"></div>
+          <div class="bar w-1 bg-brand-gold rounded"></div>
+          <div class="bar w-1 bg-brand-gold rounded"></div>
+        </div>
+
+        <div class="flex items-center space-x-2 text-brand-creamMuted text-xs">
+          <i class="fa-solid fa-volume-high text-brand-gold" id="volume-icon"></i>
+          <input type="range" id="volume-slider" min="0" max="1" step="0.01" value="0.8" oninput="changeVolume(this.value)" class="w-20 accent-brand-gold cursor-pointer h-1.5 rounded">
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Hidden HTML5 Audio Element -->
+    <audio id="global-audio" src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" preload="metadata"></audio>
+  </div>
+
+
+  <!-- ================= LIGHTBOX VIDEO MODAL ================= -->
+  <div id="video-modal" class="fixed inset-0 z-50 bg-black/90 backdrop-blur-md hidden items-center justify-center p-4">
+    <div class="relative w-full max-w-4xl bg-brand-darkCard border border-brand-gold/30 rounded-2xl overflow-hidden shadow-2xl">
+      <button onclick="closeVideoModal()" class="absolute top-4 right-4 z-10 w-10 h-10 rounded-full bg-brand-darkBg/80 text-brand-cream hover:text-brand-gold flex items-center justify-center text-lg">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+      <div class="aspect-video w-full bg-black">
+        <iframe id="modal-iframe" class="w-full h-full" src="" title="Video Player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ================= JAVASCRIPT ================= -->
+  <script>
+    // Playlist Data
+    const playlist = [
+      { title: "Peaceful Mornings 528Hz Tone", artist: "Divine Harmony", src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" },
+      { title: "Eternal Sunrise Acoustic Waves", artist: "Divine Harmony", src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3" },
+      { title: "Sacred Evening Chants", artist: "Divine Harmony", src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3" },
+      { title: "Golden Sunset Deep Sleep Ambient", artist: "Divine Harmony", src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-4.mp3" },
+    ];
+    let currentTrackIndex = 0;
+
+    const audio = document.getElementById('global-audio');
+    const playBtnIcon = document.getElementById('play-icon');
+    const playerTitle = document.getElementById('player-title');
+    const playerArtist = document.getElementById('player-artist');
+    const seekBar = document.getElementById('seek-bar');
+    const currentTimeEl = document.getElementById('current-time');
+    const totalDurationEl = document.getElementById('total-duration');
+    const visualizer = document.getElementById('visualizer');
+
+    // Toggle Audio Play / Pause
+    function toggleAudioPlay() {
+      if (audio.paused) {
+        audio.play();
+        playBtnIcon.classList.remove('fa-play');
+        playBtnIcon.classList.add('fa-pause');
+        visualizer.classList.add('playing');
+      } else {
+        audio.pause();
+        playBtnIcon.classList.remove('fa-pause');
+        playBtnIcon.classList.add('fa-play');
+        visualizer.classList.remove('playing');
+      }
+    }
+
+    // Play Specific Track
+    function playAudioTrack(title, artist, src) {
+      playerTitle.textContent = title;
+      playerArtist.textContent = artist + " (@devineharmony4u)";
+      audio.src = src;
+      audio.play();
+      playBtnIcon.classList.remove('fa-play');
+      playBtnIcon.classList.add('fa-pause');
+      visualizer.classList.add('playing');
+    }
+
+    // Next / Prev Track
+    function nextTrack() {
+      currentTrackIndex = (currentTrackIndex + 1) % playlist.length;
+      loadTrack(currentTrackIndex);
+    }
+    function prevTrack() {
+      currentTrackIndex = (currentTrackIndex - 1 + playlist.length) % playlist.length;
+      loadTrack(currentTrackIndex);
+    }
+    function loadTrack(index) {
+      const track = playlist[index];
+      playAudioTrack(track.title, track.artist, track.src);
+    }
+
+    // Update Progress
+    audio.addEventListener('timeupdate', () => {
+      if (audio.duration) {
+        const progress = (audio.currentTime / audio.duration) * 100;
+        seekBar.style.width = `${progress}%`;
+        currentTimeEl.textContent = formatTime(audio.currentTime);
+        totalDurationEl.textContent = formatTime(audio.duration);
+      }
+    });
+
+    function seekAudio(e) {
+      const seekContainer = document.getElementById('seek-container');
+      const clickPosition = (e.clientX - seekContainer.getBoundingClientRect().left) / seekContainer.offsetWidth;
+      audio.currentTime = clickPosition * audio.duration;
+    }
+
+    function changeVolume(val) {
+      audio.volume = val;
+    }
+
+    function formatTime(seconds) {
+      const min = Math.floor(seconds / 60);
+      const sec = Math.floor(seconds % 60);
+      return `${min}:${sec < 10 ? '0' : ''}${sec}`;
+    }
+
+    // Hero Embedded Player Trigger
+    function playHeroVideo() {
+      document.getElementById('hero-poster').classList.add('hidden');
+      const container = document.getElementById('hero-video-container');
+      const iframe = document.getElementById('hero-iframe');
+      container.classList.remove('hidden');
+      iframe.src = "https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1";
+    }
+
+    // Lightbox Modal Controls
+    function openVideoModal(url) {
+      const modal = document.getElementById('video-modal');
+      const iframe = document.getElementById('modal-iframe');
+      iframe.src = url + "?autoplay=1";
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+    }
+
+    function closeVideoModal() {
+      const modal = document.getElementById('video-modal');
+      const iframe = document.getElementById('modal-iframe');
+      iframe.src = "";
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+    }
+
+    // Gallery Filtering
+    function filterGallery(category) {
+      const buttons = document.querySelectorAll('.filter-btn');
+      buttons.forEach(btn => {
+        btn.classList.remove('bg-brand-gold', 'text-brand-darkBg', 'border-brand-gold');
+        btn.classList.add('bg-brand-darkCard', 'text-brand-creamMuted', 'border-brand-darkAccent');
+      });
+
+      event.currentTarget.classList.remove('bg-brand-darkCard', 'text-brand-creamMuted', 'border-brand-darkAccent');
+      event.currentTarget.classList.add('bg-brand-gold', 'text-brand-darkBg', 'border-brand-gold');
+
+      const items = document.querySelectorAll('.gallery-item');
+      items.forEach(item => {
+        if (category === 'all' || item.classList.contains(category)) {
+          item.style.display = 'flex';
+        } else {
+          item.style.display = 'none';
+        }
+      });
+    }
+
+    // Share Trigger
+    function shareContent(title, url) {
+      if (navigator.share) {
+        navigator.share({ title: title, url: url });
+      } else {
+        document.execCommand('copy');
+        alert("Link copied to clipboard!");
+      }
+    }
+
+    // Mobile Menu Toggle
+    const mobileBtn = document.getElementById('mobile-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const mobileLinks = document.querySelectorAll('.mobile-link');
+
+    mobileBtn.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+    });
+    mobileLinks.forEach(link => {
+      link.addEventListener('click', () => mobileMenu.classList.add('hidden'));
+    });
+
+    // Newsletter Handling
+    function handleNewsletterSubmit(e) {
+      e.preventDefault();
+      document.getElementById('newsletter-form').reset();
+      document.getElementById('newsletter-success').classList.remove('hidden');
+      setTimeout(() => {
+        document.getElementById('newsletter-success').classList.add('hidden');
+      }, 5000);
+    }
+  </script>
+</body>
+</html>
